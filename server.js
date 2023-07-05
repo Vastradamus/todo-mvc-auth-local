@@ -22,6 +22,7 @@ app.use(express.static('public'))
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 app.use(logger('dev'))
+
 // Sessions
 app.use(
     session({
@@ -39,7 +40,9 @@ app.use(passport.initialize())
 app.use(passport.session())
 
 app.use(flash())
-  
+
+// routers 
+
 app.use('/', mainRoutes)
 app.use('/todos', todoRoutes)
  

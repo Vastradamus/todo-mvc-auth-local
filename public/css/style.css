@@ -8,3 +8,11 @@ h1{
 .not{
     text-decoration: underline;
 }
+
+li {
+    list-style: decimal;
+    margin-bottom: 0.8rem;
+}
+span {
+    margin: 0 0.3rem;
+}

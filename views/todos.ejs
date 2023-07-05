@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
     <h1>Todos</h1>
@@ -13,15 +14,30 @@
     <% todos.forEach( el => { %>
             <li class='todoItem' data-id='<%=el._id%>'>
                 <span class='<%= el.completed === true ? 'completed' : 'not'%>'><%= el.todo %></span>
-                <span class='del'> Delete </span>
+                <span>
+                    <% if (el.importance === 'not important') { %>
+                        <i class="fas fa-minus-circle"></i>
+                  <%  } else if (el.importance === 'medium importance') { %>
+                    <i class="fas fa-circle"></i>
+                    <% } else { %>
+                        <i class="fas fa-star"></i>
+                        <%   }   %>
+                </span>
+               <span class="del"><i class=" fas fa-solid fa-trash"></i></span>
             </li>
     <% }) %>    
     </ul>
 
-    <h2><%= user.userName %> has <%= left %> things left to do.</h2>
+    <h2><%= user.userName %> has <%= left %> things left to do, and has arelady done <%= done %> </h2>
 
     <form action="/todos/createTodo" method='POST'>
         <input type="text" placeholder="Enter Todo Item" name='todoItem'>
+        <select name="toDoImportance" id="">
+            <option value=""> How important is this task to me</option>
+            <option value="not important"> I don't want to do it</option>
+            <option value="medium importance">will do if I have time</option>
+            <option value="important">do it now</option>
+        </select>
         <input type="submit">
     </form>
 
